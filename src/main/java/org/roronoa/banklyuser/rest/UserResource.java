@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
-@CrossOrigin("**")
+@CrossOrigin(origins = "*")
 public class UserResource {
     private final IUserService userService;
     private final JwtUtils jwtUtils;
@@ -36,7 +36,6 @@ public class UserResource {
             response.setData(EntityUtils.userToUserDTO(user));
             response.setStatus(IConstantes.CODE_001);
             return new ResponseEntity<>(response, HttpStatus.OK);
-
         }
         @PostMapping(path = "/login")
         public ResponseEntity<ResponseDTO<User>> login(@RequestBody @Valid AuthDto authDto){
